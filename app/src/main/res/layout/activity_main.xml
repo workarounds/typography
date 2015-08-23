@@ -1,4 +1,4 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -7,6 +7,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
     <TextView
@@ -20,7 +21,6 @@
         android:id="@+id/bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/normal"
         android:text="@string/hello_world"
         app:font_name="montserrat"
         app:font_variant="bold"/>
@@ -31,9 +31,22 @@
         android:id="@+id/italic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/bold"
         android:text="@string/hello_world"
         app:font_name="montserrat"
         app:font_variant="italic"/>
 
-</RelativeLayout>
+    <in.workarounds.typography.EditText
+        app:font_name="montserrat"
+        app:font_variant="bold"
+        android:hint="@string/hello_world"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <in.workarounds.typography.EditText
+        app:font_name="montserrat"
+        app:font_variant="italic"
+        android:text="@string/hello_world"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>
