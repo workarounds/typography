@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="TextView">
+        <attr name="font_name" format="string" />
+        <attr name="font_variant" format="string" />
+    </declare-styleable>
+
+</resources>
