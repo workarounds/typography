@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:text="@string/hello_world" />
 
-    <!-- Uses Monserrat-Bold.ttf in fonts folder in assets -->
+    <!-- Uses Montserrat-Bold.ttf in fonts folder in assets -->
     <in.workarounds.typography.TextView
         android:id="@+id/bold"
         android:layout_width="wrap_content"
@@ -46,6 +46,15 @@
         app:font_name="montserrat"
         app:font_variant="italic"
         android:text="@string/hello_world"
+        android:hint="@string/hello_world"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <in.workarounds.typography.AutoCompleteTextView
+        app:font_name="montserrat"
+        app:font_variant="bold"
+        android:text="@string/hello_world"
+        android:hint="@string/hello_world"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
