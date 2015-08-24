@@ -22,7 +22,7 @@ So if you want to add a TextView with the font 'Roboto-Condensed', you add the f
 ```
 
 You can utilize the following views to improve the typography in your app:
-`in.workarounds.typography`
+`in.workarounds.typography.`
 + TextView
 + EditText
 + AutoCompleteTextView ( to be done)
