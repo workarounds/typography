@@ -29,7 +29,8 @@ You can utilize the following views to improve the typography in your app:
 
 #### Font Files ####
 Place your fonts in `assets/fonts/` folder and use the following naming convention
-> `<font_name>-<font_variant>.<ext>`
+> *`<font_name>-<font_variant>.<ext>`*
+
 `<ext>` can be `ttf` or `otf`
 
 Note: If you want to use `Roboto.ttf`, do not use the `font_variant` attribute. Although we advise you rename the font as `Roboto-Regular.ttf` and add `font_variant` to be `Regular`
