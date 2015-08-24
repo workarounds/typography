@@ -29,7 +29,9 @@ You can utilize the following views to improve the typography in your app:
 
 #### Font Files ####
 Place your fonts in `assets/fonts/` folder and use the following naming convention
-> *`<font_name>-<font_variant>.<ext>`*
+```
+`<font_name>-<font_variant>.<ext>`
+```
 
 `<ext>` can be `ttf` or `otf`
 
