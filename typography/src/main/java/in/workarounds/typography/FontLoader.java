@@ -20,6 +20,8 @@ public class FontLoader {
     private static FontLoader mFontLoader;
     private Context mContext;
     private String[] mFontFiles;
+    private String mDefaultFontName;
+    private String mDefaultFontVariant;
     private HashMap<String, Typeface> mTypefaces;
 
     public static FontLoader getInstance(Context context) {
@@ -41,6 +43,13 @@ public class FontLoader {
     }
 
     public Typeface getTypeface(String fontName, String fontVariant) {
+        if(TextUtils.isEmpty(fontName)) {
+            fontName = mDefaultFontName;
+        }
+        if(TextUtils.isEmpty(fontVariant)) {
+            fontVariant = mDefaultFontVariant;
+        }
+
         String hash = getHash(fontName, fontVariant);
         if (mTypefaces.containsKey(hash)) {
             return mTypefaces.get(hash);
@@ -138,6 +147,19 @@ public class FontLoader {
         }
 
         return file;
+    }
+
+    public void setDefaults(String fontName, String fontVariant) {
+        setDefaultFontName(fontName);
+        setDefaultFontVariant(fontVariant);
+    }
+
+    public void setDefaultFontName(String fontName) {
+        mDefaultFontName = fontName;
+    }
+
+    public void setDefaultFontVariant(String fontVariant) {
+        mDefaultFontVariant = fontVariant;
     }
 
 }
