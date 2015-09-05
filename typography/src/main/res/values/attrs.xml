@@ -19,4 +19,9 @@
         <attr name="font_variant"/>
     </declare-styleable>
 
+    <declare-styleable name="Button">
+        <attr name="font_name"/>
+        <attr name="font_variant"/>
+    </declare-styleable>
+
 </resources>

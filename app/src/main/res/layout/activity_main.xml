@@ -58,4 +58,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
+    <in.workarounds.typography.Button
+        app:font_name="montserrat"
+        app:font_variant="bold"
+        android:text="@string/hello_world"
+        android:hint="@string/hello_world"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
 </LinearLayout>
