@@ -37,7 +37,7 @@ ext {
     siteUrl = 'https://github.com/workarounds/typography'
     gitUrl = 'https://github.com/workarounds/typography.git'
 
-    libraryVersion = '0.0.2'
+    libraryVersion = '0.0.3'
 
     developerId = 'workarounds'
     developerName = 'Workarounds'
