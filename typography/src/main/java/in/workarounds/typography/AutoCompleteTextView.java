@@ -30,10 +30,10 @@ public class AutoCompleteTextView extends android.widget.AutoCompleteTextView {
     }
 
     private void getAttrs(AttributeSet attrs){
-        TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.EditText);
+        TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.TextView);
         try{
-            mFontName = a.getString(R.styleable.AutoCompleteTextView_font_name);
-            mFontVariant = a.getString(R.styleable.AutoCompleteTextView_font_variant);
+            mFontName = a.getString(R.styleable.TextView_font_name);
+            mFontVariant = a.getString(R.styleable.TextView_font_variant);
         } finally{
             a.recycle();
         }

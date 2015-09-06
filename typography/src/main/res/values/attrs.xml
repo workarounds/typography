@@ -3,25 +3,11 @@
 
     <attr name="font_name" format="string" />
     <attr name="font_variant" format="string" />
+    <attr name="defaultFontName" format="string" />
+    <attr name="defaultFontVariant" format="string" />
 
     <declare-styleable name="TextView">
         <attr name="font_name"/>
         <attr name="font_variant"/>
     </declare-styleable>
-
-    <declare-styleable name="EditText">
-        <attr name="font_name"/>
-        <attr name="font_variant"/>
-    </declare-styleable>
-
-    <declare-styleable name="AutoCompleteTextView">
-        <attr name="font_name"/>
-        <attr name="font_variant"/>
-    </declare-styleable>
-
-    <declare-styleable name="Button">
-        <attr name="font_name"/>
-        <attr name="font_variant"/>
-    </declare-styleable>
-
 </resources>

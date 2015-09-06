@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Typeface;
 import android.text.TextUtils;
 import android.util.Log;
+import android.util.TypedValue;
 
 import java.io.File;
 import java.io.IOException;
@@ -34,6 +35,17 @@ public class FontLoader {
     private FontLoader(Context context) {
         mContext = context;
         mTypefaces = new HashMap<>();
+
+        TypedValue fontNameValue = new TypedValue();
+        TypedValue fontVariantValue = new TypedValue();
+        context.getTheme().resolveAttribute(R.attr.defaultFontName, fontNameValue, true);
+        context.getTheme().resolveAttribute(R.attr.defaultFontVariant, fontVariantValue, true);
+        String defaultFontName = (String) fontNameValue.string;
+        String defaultFontVariant = (String) fontVariantValue.string;
+        Log.d(TAG, "FontLoader defaultFontName" + defaultFontName);
+        Log.d(TAG, "FontLoader defaultFontVariant" + defaultFontVariant);
+        setDefaults(defaultFontName, defaultFontVariant);
+
         try {
             mFontFiles = mContext.getAssets().list(FONT_ROOT);
         } catch (IOException e) {
@@ -43,6 +55,7 @@ public class FontLoader {
     }
 
     public Typeface getTypeface(String fontName, String fontVariant) {
+        Log.d(TAG, "getTypeface fontName: " + fontName + " fontVariant: " + fontVariant);
         if(TextUtils.isEmpty(fontName)) {
             fontName = mDefaultFontName;
         }
@@ -97,7 +110,7 @@ public class FontLoader {
     }
 
     private String getFontFile(String fontName, String fontVariant) {
-        if (mFontFiles == null || mFontFiles.length == 0) {
+        if (mFontFiles == null || mFontFiles.length == 0 || TextUtils.isEmpty(fontName)) {
             Log.e(TAG, "No fonts folder in assets");
             return null;
         }
