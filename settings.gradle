@@ -1,1 +1,1 @@
-include ':app', ':typography'
+include ':app', ':typography', ':typography-annotations', ':typography-compiler'
