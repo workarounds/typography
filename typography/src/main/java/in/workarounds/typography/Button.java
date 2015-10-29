@@ -8,7 +8,7 @@ import android.util.AttributeSet;
 /**
  * Created by madki on 06/09/15.
  */
-public class Button extends android.widget.Button {
+public class Button extends android.support.v7.widget.AppCompatButton{
     private String mFontName;
     private String mFontVariant;
 

@@ -8,7 +8,7 @@ import android.util.AttributeSet;
 /**
  * Created by madki on 22/08/15.
  */
-public class TextView extends android.widget.TextView {
+public class TextView extends android.support.v7.widget.AppCompatTextView{
     private String mFontName;
     private String mFontVariant;
 

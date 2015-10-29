@@ -8,7 +8,7 @@ import android.util.AttributeSet;
 /**
  * Created by madki on 13/10/15.
  */
-public class CheckBox extends android.widget.CheckBox {
+public class CheckBox extends android.support.v7.widget.AppCompatCheckBox {
     private String mFontName;
     private String mFontVariant;
 
