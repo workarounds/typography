@@ -1,8 +1,10 @@
 package in.workarounds.typography;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Typeface;
 import android.text.TextUtils;
+import android.util.AttributeSet;
 import android.util.Log;
 import android.util.TypedValue;
 
@@ -68,6 +70,30 @@ public class FontLoader {
             return mTypefaces.get(hash);
         } else {
             return getNewTypeface(fontName, fontVariant, hash);
+        }
+    }
+
+    public Typeface getTypeface(Context context, AttributeSet attrs) {
+        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.TextView);
+        String fontName, fontVariant;
+        try{
+            fontName = a.getString(R.styleable.TextView_font_name);
+            fontVariant = a.getString(R.styleable.TextView_font_variant);
+        } finally{
+            a.recycle();
+        }
+
+        return getTypeface(fontName, fontVariant);
+    }
+
+    public void setTypeface(android.widget.TextView textView, AttributeSet attrs){
+        Typeface typeface = getTypeface(textView.getContext(), attrs);
+        textView.setTypeface(typeface);
+    }
+
+    public void setTypography(android.widget.TextView textView, AttributeSet attrs){
+        if(!textView.isInEditMode()) {
+            setTypeface(textView, attrs);
         }
     }
 
