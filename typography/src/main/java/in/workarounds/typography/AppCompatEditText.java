@@ -4,19 +4,19 @@ import android.content.Context;
 import android.util.AttributeSet;
 
 /**
- * Created by madki on 13/10/15.
+ * Created by madki on 23/08/15.
  */
-public class ToggleButton extends android.widget.ToggleButton {
-    public ToggleButton(Context context) {
+public class AppCompatEditText extends android.support.v7.widget.AppCompatEditText {
+    public AppCompatEditText(Context context) {
         super(context);
     }
 
-    public ToggleButton(Context context, AttributeSet attrs) {
+    public AppCompatEditText(Context context, AttributeSet attrs) {
         super(context, attrs);
         setTypography(attrs);
     }
 
-    public ToggleButton(Context context, AttributeSet attrs, int defStyleAttr) {
+    public AppCompatEditText(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         setTypography(attrs);
     }
@@ -24,4 +24,5 @@ public class ToggleButton extends android.widget.ToggleButton {
     private void setTypography(AttributeSet attrs) {
         FontLoader.getInstance(getContext()).setTypography(this, attrs);
     }
+
 }

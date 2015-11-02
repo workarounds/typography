@@ -6,7 +6,7 @@ import android.util.AttributeSet;
 /**
  * Created by madki on 13/10/15.
  */
-public class RadioButton extends android.support.v7.widget.AppCompatRadioButton {
+public class RadioButton extends android.widget.RadioButton {
     public RadioButton(Context context) {
         super(context);
     }
@@ -21,7 +21,7 @@ public class RadioButton extends android.support.v7.widget.AppCompatRadioButton 
         setTypography(attrs);
     }
 
-    private void setTypography(AttributeSet attrs){
+    private void setTypography(AttributeSet attrs) {
         FontLoader.getInstance(getContext()).setTypography(this, attrs);
     }
 }

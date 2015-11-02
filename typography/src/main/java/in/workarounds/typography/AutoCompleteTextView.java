@@ -6,7 +6,7 @@ import android.util.AttributeSet;
 /**
  * Created by madki on 24/08/15.
  */
-public class AutoCompleteTextView extends android.support.v7.widget.AppCompatAutoCompleteTextView {
+public class AutoCompleteTextView extends android.widget.AutoCompleteTextView {
     public AutoCompleteTextView(Context context) {
         super(context);
     }
@@ -21,7 +21,7 @@ public class AutoCompleteTextView extends android.support.v7.widget.AppCompatAut
         setTypography(attrs);
     }
 
-    private void setTypography(AttributeSet attrs){
+    private void setTypography(AttributeSet attrs) {
         FontLoader.getInstance(getContext()).setTypography(this, attrs);
     }
 }

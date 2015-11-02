@@ -6,7 +6,7 @@ import android.util.AttributeSet;
 /**
  * Created by madki on 06/09/15.
  */
-public class Button extends android.support.v7.widget.AppCompatButton{
+public class Button extends android.widget.Button {
     public Button(Context context) {
         super(context);
     }
@@ -21,7 +21,7 @@ public class Button extends android.support.v7.widget.AppCompatButton{
         setTypography(attrs);
     }
 
-    private void setTypography(AttributeSet attrs){
+    private void setTypography(AttributeSet attrs) {
         FontLoader.getInstance(getContext()).setTypography(this, attrs);
     }
 }

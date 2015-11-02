@@ -86,12 +86,12 @@ public class FontLoader {
         return getTypeface(fontName, fontVariant);
     }
 
-    public void setTypeface(android.widget.TextView textView, AttributeSet attrs){
+    public void setTypeface(android.widget.TextView textView, AttributeSet attrs) {
         Typeface typeface = getTypeface(textView.getContext(), attrs);
         textView.setTypeface(typeface);
     }
 
-    public void setTypography(android.widget.TextView textView, AttributeSet attrs){
+    public void setTypography(android.widget.TextView textView, AttributeSet attrs) {
         if(!textView.isInEditMode()) {
             setTypeface(textView, attrs);
         }

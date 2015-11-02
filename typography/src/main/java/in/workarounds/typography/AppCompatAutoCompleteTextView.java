@@ -4,19 +4,19 @@ import android.content.Context;
 import android.util.AttributeSet;
 
 /**
- * Created by madki on 13/10/15.
+ * Created by madki on 24/08/15.
  */
-public class ToggleButton extends android.widget.ToggleButton {
-    public ToggleButton(Context context) {
+public class AppCompatAutoCompleteTextView extends android.support.v7.widget.AppCompatAutoCompleteTextView {
+    public AppCompatAutoCompleteTextView(Context context) {
         super(context);
     }
 
-    public ToggleButton(Context context, AttributeSet attrs) {
+    public AppCompatAutoCompleteTextView(Context context, AttributeSet attrs) {
         super(context, attrs);
         setTypography(attrs);
     }
 
-    public ToggleButton(Context context, AttributeSet attrs, int defStyleAttr) {
+    public AppCompatAutoCompleteTextView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         setTypography(attrs);
     }

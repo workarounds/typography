@@ -6,17 +6,17 @@ import android.util.AttributeSet;
 /**
  * Created by madki on 13/10/15.
  */
-public class ToggleButton extends android.widget.ToggleButton {
-    public ToggleButton(Context context) {
+public class AppCompatCheckBox extends android.support.v7.widget.AppCompatCheckBox {
+    public AppCompatCheckBox(Context context) {
         super(context);
     }
 
-    public ToggleButton(Context context, AttributeSet attrs) {
+    public AppCompatCheckBox(Context context, AttributeSet attrs) {
         super(context, attrs);
         setTypography(attrs);
     }
 
-    public ToggleButton(Context context, AttributeSet attrs, int defStyleAttr) {
+    public AppCompatCheckBox(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         setTypography(attrs);
     }
