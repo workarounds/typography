@@ -8,7 +8,7 @@ import android.util.AttributeSet;
 /**
  * Created by madki on 23/08/15.
  */
-public class EditText extends android.widget.EditText {
+public class EditText extends android.support.v7.widget.AppCompatEditText {
     private String mFontName;
     private String mFontVariant;
 

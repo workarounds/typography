@@ -8,7 +8,7 @@ import android.util.AttributeSet;
 /**
  * Created by madki on 24/08/15.
  */
-public class AutoCompleteTextView extends android.widget.AutoCompleteTextView {
+public class AutoCompleteTextView extends android.support.v7.widget.AppCompatAutoCompleteTextView {
     private String mFontName;
     private String mFontVariant;
 

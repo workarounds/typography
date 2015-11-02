@@ -8,7 +8,7 @@ import android.util.AttributeSet;
 /**
  * Created by madki on 13/10/15.
  */
-public class RadioButton extends android.widget.RadioButton {
+public class RadioButton extends android.support.v7.widget.AppCompatRadioButton {
     private String mFontName;
     private String mFontVariant;
 
