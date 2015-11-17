@@ -10,7 +10,7 @@ There are two important attributes that define a font
 + `font_variant` Ex: 'Bold', 'Condensed'
 
 So if you want to add a TextView with the font 'Roboto-Condensed', you add the following to your layout file
-```
+``` xml
 <in.workarounds.typography.TextView
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
