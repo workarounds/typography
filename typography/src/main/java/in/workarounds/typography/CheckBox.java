@@ -22,6 +22,6 @@ public class CheckBox extends android.support.v7.widget.AppCompatCheckBox {
     }
 
     private void setTypography(AttributeSet attrs){
-        FontLoader.getInstance(getContext()).setTypography(this, attrs);
+        FontLoader.setTypography(this, attrs);
     }
 }

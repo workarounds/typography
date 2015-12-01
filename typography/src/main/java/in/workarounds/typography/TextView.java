@@ -22,6 +22,6 @@ public class TextView extends android.support.v7.widget.AppCompatTextView{
     }
 
     private void setTypography(AttributeSet attrs){
-        FontLoader.getInstance(getContext()).setTypography(this, attrs);
+        FontLoader.setTypography(this, attrs);
     }
 }

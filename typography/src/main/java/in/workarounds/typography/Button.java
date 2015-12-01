@@ -22,6 +22,6 @@ public class Button extends android.support.v7.widget.AppCompatButton{
     }
 
     private void setTypography(AttributeSet attrs){
-        FontLoader.getInstance(getContext()).setTypography(this, attrs);
+        FontLoader.setTypography(this, attrs);
     }
 }

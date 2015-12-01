@@ -21,21 +21,30 @@ public class FontLoader {
     private static String FONT_ROOT = "fonts";
 
     private static FontLoader mFontLoader;
-    private Context mContext;
     private String[] mFontFiles;
     private String mDefaultFontName;
     private String mDefaultFontVariant;
     private HashMap<String, Typeface> mTypefaces;
 
-    public static FontLoader getInstance(Context context) {
+    private static FontLoader getInstance(Context context) {
         if (mFontLoader == null) {
             mFontLoader = new FontLoader(context);
+        } else {
+            mFontLoader.initFontFiles(context);
+        }
+        return mFontLoader;
+    }
+
+    private static FontLoader getInstance(String defaultFontName, String defaultFontVariant) {
+        if(mFontLoader == null) {
+            mFontLoader = new FontLoader(defaultFontName, defaultFontVariant);
+        } else {
+            mFontLoader.setDefaults(defaultFontName, defaultFontVariant);
         }
         return mFontLoader;
     }
 
     private FontLoader(Context context) {
-        mContext = context;
         mTypefaces = new HashMap<>();
 
         TypedValue fontNameValue = new TypedValue();
@@ -48,32 +57,40 @@ public class FontLoader {
         Log.d(TAG, "FontLoader defaultFontVariant" + defaultFontVariant);
         setDefaults(defaultFontName, defaultFontVariant);
 
-        try {
-            mFontFiles = mContext.getAssets().list(FONT_ROOT);
-        } catch (IOException e) {
-            Log.e(TAG, "No fonts folder found in assets");
-            e.printStackTrace();
-        }
+        initFontFiles(context);
     }
 
-    public Typeface getTypeface(String fontName, String fontVariant) {
+    private FontLoader(String defaultFontName, String defaultFontVariant) {
+        setDefaults(defaultFontName, defaultFontVariant);
+    }
+
+    public static void clear() {
+        mFontLoader = null;
+    }
+
+    public static void setDefaultFont(String defaultFontName, String defaultFontVariant) {
+        getInstance(defaultFontName, defaultFontVariant);
+    }
+
+    public static Typeface getTypeface(Context context, String fontName, String fontVariant) {
         Log.d(TAG, "getTypeface fontName: " + fontName + " fontVariant: " + fontVariant);
+        FontLoader fontLoader = getInstance(context);
         if(TextUtils.isEmpty(fontName)) {
-            fontName = mDefaultFontName;
+            fontName = fontLoader.mDefaultFontName;
         }
         if(TextUtils.isEmpty(fontVariant)) {
-            fontVariant = mDefaultFontVariant;
+            fontVariant = fontLoader.mDefaultFontVariant;
         }
 
         String hash = getHash(fontName, fontVariant);
-        if (mTypefaces.containsKey(hash)) {
-            return mTypefaces.get(hash);
+        if (fontLoader.mTypefaces.containsKey(hash)) {
+            return fontLoader.mTypefaces.get(hash);
         } else {
-            return getNewTypeface(fontName, fontVariant, hash);
+            return fontLoader.getNewTypeface(context, fontName, fontVariant, hash);
         }
     }
 
-    public Typeface getTypeface(Context context, AttributeSet attrs) {
+    public static Typeface getTypeface(Context context, AttributeSet attrs) {
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.TextView);
         String fontName, fontVariant;
         try{
@@ -83,25 +100,25 @@ public class FontLoader {
             a.recycle();
         }
 
-        return getTypeface(fontName, fontVariant);
+        return getTypeface(context, fontName, fontVariant);
     }
 
-    public void setTypeface(android.widget.TextView textView, AttributeSet attrs){
+    public static void setTypeface(android.widget.TextView textView, AttributeSet attrs){
         Typeface typeface = getTypeface(textView.getContext(), attrs);
         textView.setTypeface(typeface);
     }
 
-    public void setTypography(android.widget.TextView textView, AttributeSet attrs){
+    public static void setTypography(android.widget.TextView textView, AttributeSet attrs){
         if(!textView.isInEditMode()) {
             setTypeface(textView, attrs);
         }
     }
 
-    private String getHash(String fontName, String fontVariant) {
+    private static String getHash(String fontName, String fontVariant) {
         return fontName + SEPARATOR + fontVariant;
     }
 
-    private Typeface getNewTypeface(String fontName, String fontVariant, String hash) {
+    private Typeface getNewTypeface(Context context, String fontName, String fontVariant, String hash) {
         Typeface typeface = null;
         boolean fallback = false;
 
@@ -122,7 +139,7 @@ public class FontLoader {
         }
 
         try {
-            typeface = Typeface.createFromAsset(mContext.getAssets(), fontFile);
+            typeface = Typeface.createFromAsset(context.getAssets(), fontFile);
         } catch (RuntimeException e) {
             Log.e(TAG, "Font asset not found " + fontFile);
         }
@@ -134,6 +151,18 @@ public class FontLoader {
         mTypefaces.put(hash, typeface);
         return typeface;
     }
+
+    private void initFontFiles(Context context) {
+        if(mFontFiles == null) {
+            try {
+                mFontFiles = context.getAssets().list(FONT_ROOT);
+            } catch (IOException e) {
+                Log.e(TAG, "No fonts folder found in assets");
+                e.printStackTrace();
+            }
+        }
+    }
+
 
     private String getFontFile(String fontName, String fontVariant) {
         if (mFontFiles == null || mFontFiles.length == 0 || TextUtils.isEmpty(fontName)) {
@@ -188,16 +217,16 @@ public class FontLoader {
         return file;
     }
 
-    public void setDefaults(String fontName, String fontVariant) {
+    private void setDefaults(String fontName, String fontVariant) {
         setDefaultFontName(fontName);
         setDefaultFontVariant(fontVariant);
     }
 
-    public void setDefaultFontName(String fontName) {
+    private void setDefaultFontName(String fontName) {
         mDefaultFontName = fontName;
     }
 
-    public void setDefaultFontVariant(String fontVariant) {
+    private void setDefaultFontVariant(String fontVariant) {
         mDefaultFontVariant = fontVariant;
     }
 

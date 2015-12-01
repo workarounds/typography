@@ -22,7 +22,7 @@ public class EditText extends android.support.v7.widget.AppCompatEditText {
     }
 
     private void setTypography(AttributeSet attrs){
-        FontLoader.getInstance(getContext()).setTypography(this, attrs);
+        FontLoader.setTypography(this, attrs);
     }
 
 }

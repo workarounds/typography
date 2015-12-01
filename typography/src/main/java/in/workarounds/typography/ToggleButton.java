@@ -22,6 +22,6 @@ public class ToggleButton extends android.widget.ToggleButton {
     }
 
     private void setTypography(AttributeSet attrs){
-        FontLoader.getInstance(getContext()).setTypography(this, attrs);
+        FontLoader.setTypography(this, attrs);
     }
 }

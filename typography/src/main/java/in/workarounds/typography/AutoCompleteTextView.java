@@ -22,6 +22,6 @@ public class AutoCompleteTextView extends android.support.v7.widget.AppCompatAut
     }
 
     private void setTypography(AttributeSet attrs){
-        FontLoader.getInstance(getContext()).setTypography(this, attrs);
+        FontLoader.setTypography(this, attrs);
     }
 }
