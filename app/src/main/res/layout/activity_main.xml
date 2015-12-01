@@ -58,7 +58,7 @@
 
     <in.workarounds.typography.Button
         app:font_name="montserrat"
-        app:font_variant="bold"
+        app:font_variant="bolder"
         android:text="@string/hello_world"
         android:hint="@string/hello_world"
         android:layout_width="wrap_content"

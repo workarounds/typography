@@ -5,12 +5,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import in.workarounds.typography.FontLoader;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        FontLoader.getInstance(this).setDefaults("montserrat", "italic");
+        FontLoader.setLoggingEnabled(true);
         setContentView(R.layout.activity_main);
     }
 

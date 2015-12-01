@@ -25,12 +25,23 @@ public class FontLoader {
     private String mDefaultFontName;
     private String mDefaultFontVariant;
     private HashMap<String, Typeface> mTypefaces;
+    private boolean loggingEnabled = false;
+
+    private static FontLoader getInstance(boolean loggingEnabled) {
+        if(mFontLoader == null) {
+            mFontLoader = new FontLoader(loggingEnabled);
+        } else {
+            mFontLoader.loggingEnabled = loggingEnabled;
+        }
+        return mFontLoader;
+    }
 
     private static FontLoader getInstance(Context context) {
         if (mFontLoader == null) {
             mFontLoader = new FontLoader(context);
         } else {
             mFontLoader.initFontFiles(context);
+            mFontLoader.getDefaultsFromContext(context);
         }
         return mFontLoader;
     }
@@ -45,27 +56,29 @@ public class FontLoader {
     }
 
     private FontLoader(Context context) {
-        mTypefaces = new HashMap<>();
+        this(false);
 
-        TypedValue fontNameValue = new TypedValue();
-        TypedValue fontVariantValue = new TypedValue();
-        context.getTheme().resolveAttribute(R.attr.defaultFontName, fontNameValue, true);
-        context.getTheme().resolveAttribute(R.attr.defaultFontVariant, fontVariantValue, true);
-        String defaultFontName = (String) fontNameValue.string;
-        String defaultFontVariant = (String) fontVariantValue.string;
-        Log.d(TAG, "FontLoader defaultFontName" + defaultFontName);
-        Log.d(TAG, "FontLoader defaultFontVariant" + defaultFontVariant);
-        setDefaults(defaultFontName, defaultFontVariant);
+        getDefaultsFromContext(context);
 
         initFontFiles(context);
     }
 
     private FontLoader(String defaultFontName, String defaultFontVariant) {
+        this(false);
         setDefaults(defaultFontName, defaultFontVariant);
+    }
+
+    private FontLoader(boolean loggingEnabled) {
+        mTypefaces = new HashMap<>();
+        this.loggingEnabled = loggingEnabled;
     }
 
     public static void clear() {
         mFontLoader = null;
+    }
+
+    public static void setLoggingEnabled(boolean loggingEnabled) {
+        getInstance(loggingEnabled);
     }
 
     public static void setDefaultFont(String defaultFontName, String defaultFontVariant) {
@@ -73,8 +86,8 @@ public class FontLoader {
     }
 
     public static Typeface getTypeface(Context context, String fontName, String fontVariant) {
-        Log.d(TAG, "getTypeface fontName: " + fontName + " fontVariant: " + fontVariant);
         FontLoader fontLoader = getInstance(context);
+        fontLoader.logd("getTypeface fontName: " + fontName + " fontVariant: " + fontVariant);
         if(TextUtils.isEmpty(fontName)) {
             fontName = fontLoader.mDefaultFontName;
         }
@@ -134,14 +147,14 @@ public class FontLoader {
             if (TextUtils.isEmpty(fontFile)) {
                 fallback = true;
                 fontFile = getFontFile(fontName, null);
-                Log.e(TAG, "falling back to base font " + fontFile);
+                logd("falling back to base font " + fontFile);
             }
         }
 
         try {
             typeface = Typeface.createFromAsset(context.getAssets(), fontFile);
         } catch (RuntimeException e) {
-            Log.e(TAG, "Font asset not found " + fontFile);
+            loge("Font file not found for " + fontName);
         }
 
         if (fallback) {
@@ -157,7 +170,7 @@ public class FontLoader {
             try {
                 mFontFiles = context.getAssets().list(FONT_ROOT);
             } catch (IOException e) {
-                Log.e(TAG, "No fonts folder found in assets");
+                loge("No fonts folder found in assets");
                 e.printStackTrace();
             }
         }
@@ -165,8 +178,13 @@ public class FontLoader {
 
 
     private String getFontFile(String fontName, String fontVariant) {
-        if (mFontFiles == null || mFontFiles.length == 0 || TextUtils.isEmpty(fontName)) {
-            Log.e(TAG, "No fonts folder in assets");
+        if (mFontFiles == null || mFontFiles.length == 0) {
+            loge("No fonts folder in assets");
+            return null;
+        }
+
+        if(TextUtils.isEmpty(fontName)) {
+            loge("Default font not set");
             return null;
         }
 
@@ -184,7 +202,6 @@ public class FontLoader {
                 return FONT_ROOT + File.separator + file;
             }
         }
-        Log.e(TAG, "failed to find " + fontFile + " in assets/fonts");
         return null;
     }
 
@@ -192,17 +209,17 @@ public class FontLoader {
         String lowerVariant = fontVariant.toLowerCase();
 
         if (lowerVariant.equals("bold")) {
-            Log.e(TAG, "No bold font found. Making it bold using code. Not advisable.");
+            logd("No bold font found. Making it bold using code. Not advisable.");
             return Typeface.create(typeface, Typeface.BOLD);
         } else if (lowerVariant.equals("italic")) {
-            Log.e(TAG, "No italic font found. Making it italic using code. Not advisable.");
+            logd("No italic font found. Making it italic using code. Not advisable.");
             return Typeface.create(typeface, Typeface.ITALIC);
         } else if (lowerVariant.equals("bolditalic")) {
-            Log.e(TAG, "No bolditalic font found. Making it bolditalic using code. Not advisable.");
+            logd("No bolditalic font found. Making it bolditalic using code. Not advisable.");
             return Typeface.create(typeface, Typeface.BOLD_ITALIC);
         }
 
-        Log.e(TAG, "Font variant not recognized. Please add font for " + fontVariant);
+        loge("Font variant not recognized. Please add font for " + fontVariant);
         return typeface;
     }
 
@@ -215,6 +232,18 @@ public class FontLoader {
         }
 
         return file;
+    }
+
+    private void getDefaultsFromContext(Context context) {
+        if(mDefaultFontName == null) {
+            TypedValue fontNameValue = new TypedValue();
+            TypedValue fontVariantValue = new TypedValue();
+            context.getTheme().resolveAttribute(R.attr.defaultFontName, fontNameValue, true);
+            context.getTheme().resolveAttribute(R.attr.defaultFontVariant, fontVariantValue, true);
+            String defaultFontName = (String) fontNameValue.string;
+            String defaultFontVariant = (String) fontVariantValue.string;
+            setDefaults(defaultFontName, defaultFontVariant);
+        }
     }
 
     private void setDefaults(String fontName, String fontVariant) {
@@ -230,4 +259,13 @@ public class FontLoader {
         mDefaultFontVariant = fontVariant;
     }
 
+    private void logd(String message) {
+        if(loggingEnabled) {
+            Log.d(TAG, message);
+        }
+    }
+
+    private void loge(String message) {
+        Log.e(TAG, message);
+    }
 }
