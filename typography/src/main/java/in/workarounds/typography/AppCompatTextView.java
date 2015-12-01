@@ -6,22 +6,22 @@ import android.util.AttributeSet;
 /**
  * Created by madki on 22/08/15.
  */
-public class TextView extends android.widget.TextView{
-    public TextView(Context context) {
+public class AppCompatTextView extends android.support.v7.widget.AppCompatTextView{
+    public AppCompatTextView(Context context) {
         super(context);
     }
 
-    public TextView(Context context, AttributeSet attrs) {
+    public AppCompatTextView(Context context, AttributeSet attrs) {
         super(context, attrs);
         setTypography(attrs);
     }
 
-    public TextView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public AppCompatTextView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         setTypography(attrs);
     }
 
-    private void setTypography(AttributeSet attrs){
+    private void setTypography(AttributeSet attrs) {
         FontLoader.setTypography(this, attrs);
     }
 }
