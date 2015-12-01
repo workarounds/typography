@@ -25,7 +25,11 @@ You can utilize the following views to improve the typography in your app:
 `in.workarounds.typography.`
 + TextView
 + EditText
-+ AutoCompleteTextView ( to be done)
++ AutoCompleteTextView
++ Button
++ Checkbox
++ RadioButton
++ ToggleButton
 
 #### Font Files ####
 Place your fonts in `assets/fonts/` folder and use the following naming convention
