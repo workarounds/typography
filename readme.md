@@ -41,3 +41,11 @@ Place your fonts in `assets/fonts/` folder and use the following naming conventi
 
 Note: If you want to use `Roboto.ttf`, do not use the `font_variant` attribute.
 
+#### FontLoader ####
+`FontLoader` is the class responsible for caching the `Typeface`s and setting the fonts to the Views. 
+
+Set the default font name and font variant in your Application class
+> `FontLoader.setDefaultFont(fontName, fontVariant)`
+
+Enable detailed logs(errors are always logged)
+> `FontLoader.setLoggingEnabled(true)`
