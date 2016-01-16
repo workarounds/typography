@@ -16,6 +16,10 @@ branches:
   except:
     - gh-pages
 
+env:
+  global:
+    - ADB_INSTALL_TIMEOUT=8 # minutes (2 minutes by default)
+
 # Emulator Management: Create, Start and Wait
 before_script:
   - echo no | android create avd --force -n test -t android-23 --abi armeabi-v7a
