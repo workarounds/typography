@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/workarounds/typography.svg?branch=master)](https://travis-ci.org/workarounds/typography)
+
 #### Add to your project ####
 Add this line to your dependencies in `build.gradle`
 ```
