@@ -12,7 +12,6 @@ android:
 
 jdk:
   - oraclejdk7
-  - oraclejdk8
 
 branches:
   except:
