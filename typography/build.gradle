@@ -24,11 +24,6 @@ android {
         checkReleaseBuilds false
         abortOnError false
     }
-
-    adbOptions {
-        timeOutInMs 10000 // 10 seconds in ms.
-        installOptions "-d","-t"
-    }
 }
 
 dependencies {

@@ -26,7 +26,7 @@ android {
     }
 
     adbOptions {
-        timeOutInMs 10000 // 10 seconds in ms.
+        timeOutInMs 100000 // 100 seconds in ms.
         installOptions "-d","-t"
     }
 }
